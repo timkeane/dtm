@@ -37,8 +37,6 @@ var view = new ol.View({
 
 var map = new ol.Map({target: 'map', view: view});
 
-var urls = {};
-
 var source = new ol.source.TileWMS({
   tileGrid: grid,
   serverType: 'geoserver',
