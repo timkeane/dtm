@@ -1,20 +1,20 @@
 var RESOLUTIONS = [
-  459.3166666666666,
-  321.5216666666666,
-  235.17013333333327,
-  117.58506666666663,
-  58.79253333333332,
-  29.39626666666666,
-  14.69813333333333,
-  7.349066666666665,
-  3.6745333333333323,
-  1.8372666666666662,
-  0.9186333333333331,
-  0.4593166666666665,
-  0.2296583333333333,
-  0.1148291666666666
+  434.027777777773,
+  303.819444444441,
+  222.222222222220,
+  111.111111111110,
+  55.555555555555,
+  27.777777777778,
+  13.888888888889,
+  6.944444444444,
+  3.472222222222,
+  1.736111111111,
+  0.868055555556,
+  0.434027777778,
+  0.217013888889,
+  0.108506944444
 ];
-var EXTENT = [700000, -4444.444444, 1366666.666667, 440000];
+var EXTENT = [700000.0,-4444.444444444671,1366666.666666667,440000.0];
 
 proj4.defs(
   'EPSG:2263',
@@ -32,13 +32,16 @@ var view = new ol.View({
   extent: EXTENT,
   resolutions: RESOLUTIONS,
   center: [990203, 196492],
-  zoom: 2
+  zoom: 0
 });
 
 var map = new ol.Map({target: 'map', view: view});
 
+var urls = {};
+
 var source = new ol.source.TileWMS({
   tileGrid: grid,
+  serverType: 'geoserver',
   urls: [
     'http://maps.nyc.gov/geowebcache/service/wms/',
     'http://maps1.nyc.gov/geowebcache/service/wms/',
@@ -47,11 +50,11 @@ var source = new ol.source.TileWMS({
     'http://maps4.nyc.gov/geowebcache/service/wms/'
   ],
   params: {
-    service: 'WMS',
-    version: '1.1.1',
-    format: 'image/png',
-    layers: 'dtm',
-    srs: 'EPSG:2263'
+    SERVICE: 'WMS',
+    VERSION: '1.1.1',
+    FORMAT: 'image/png',
+    LAYERS: 'dtm',
+    TRANSPARENT: false
   }
 });
 
