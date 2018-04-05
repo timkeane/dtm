@@ -34,14 +34,8 @@ function makeMap(){
 
   var view = new ol.View({
     projection: 'EPSG:3857',
-    extent: function(){
-      var bl = proj4('EPSG:2263', 'EPSG:3857', ol.extent.getBottomLeft(EXTENT));
-      var tr = proj4('EPSG:2263', 'EPSG:3857', ol.extent.getTopRight(EXTENT));
-      return [bl[0], bl[1], tr[0], tr[1]];
-    }(),
-    resolutions: RESOLUTIONS,
-    center: proj4('EPSG:2263', 'EPSG:3857', [990203, 196492]),
-    zoom: 0
+    center: [-8235252, 4969073],
+    zoom: 10.5
   });
 
 $('div.openLayers.flexItem').empty(0);
@@ -54,8 +48,8 @@ $('div.openLayers.flexItem').empty(0);
   window.ol_map = map;
 
   var source = new ol.source.TileWMS({
-    projection: 'EPSG:2263',
     tileGrid: grid,
+    projection: 'EPSG:2263',
     serverType: 'geoserver',
     urls: [
       'http://maps.nyc.gov/geowebcache/service/wms/',

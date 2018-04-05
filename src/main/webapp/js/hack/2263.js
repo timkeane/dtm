@@ -34,10 +34,8 @@ function makeMap(){
 
   var view = new ol.View({
     projection: 'EPSG:2263',
-    extent: EXTENT,
-    resolutions: RESOLUTIONS,
     center: [990203, 196492],
-    zoom: 0
+    zoom: 11
   });
 
 $('div.openLayers.flexItem').empty(0);
@@ -51,6 +49,7 @@ $('div.openLayers.flexItem').empty(0);
 
   var source = new ol.source.TileWMS({
     tileGrid: grid,
+    projection: 'EPSG:2263',
     serverType: 'geoserver',
     urls: [
       'http://maps.nyc.gov/geowebcache/service/wms/',
